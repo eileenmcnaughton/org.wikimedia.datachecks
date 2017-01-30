@@ -32,7 +32,7 @@ class CRM_Datachecks_PrimaryLocation {
       $matchesTable = $this->createTemporaryTable($entity);
 
       $sql = "
-        SELECT count(*) 
+        SELECT count(*)
         FROM $matchesTable
         INNER JOIN civicrm_contact c ON c.id = contact_id
         WHERE is_deleted = 0
@@ -77,7 +77,7 @@ class CRM_Datachecks_PrimaryLocation {
 
     CRM_Core_DAO::executeQuery("
       CREATE TEMPORARY TABLE {$this->temporaryTable} (
-      SELECT contact_id, id, count(id) as count_entities, sum(is_primary) as c
+      SELECT contact_id, min(id), count(id) as count_entities, sum(is_primary) as c
       FROM civicrm_{$entity}
       WHERE contact_id IS NOT NULL
       GROUP BY contact_id

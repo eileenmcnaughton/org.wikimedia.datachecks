@@ -41,6 +41,8 @@ function _civicrm_api3_data_fix_spec(&$params) {
     'type' => CRM_Utils_Type::T_STRING,
     'description' => ts('Specify the fix to run'),
   );
+   /*
+   @todo - this is part of the goal of fixing the duplicates.
   foreach (datachecks_civicrm_data_fix_get_options() as $fix) {
     if (!empty($fix['fix_options'])) {
       $params[$fix['name']] = array(
@@ -48,6 +50,7 @@ function _civicrm_api3_data_fix_spec(&$params) {
       );
     }
   }
+   */
   $params['fix_options'] = array(
     'name' => 'fix_options',
     'type' => CRM_Utils_Type::T_STRING,

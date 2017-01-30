@@ -7,14 +7,14 @@
  * @return array
  */
 function civicrm_api3_data_check($params) {
-  $options = datachecks_civicrm_data_fix_get_options();
+  $dataChecks = datachecks_civicrm_data_fix_get_options();
   if (!empty($params['check'])) {
-    $options = array_intersect_key($options, array_flip((array) $params['check']));
+    $dataChecks = array_intersect_key($dataChecks, array_flip((array) $params['check']));
   }
   $result = array();
-  foreach ($options as $option) {
-    $checkObject = new $option['class'];
-    $result[$option['name']] = $checkObject->check();
+  foreach ($dataChecks as $dataCheck) {
+    $checkObject = new $dataCheck['class'];
+    $result[$dataCheck['name']] = $checkObject->check();
   }
   return civicrm_api3_create_success($result);
 }
